@@ -1,0 +1,61 @@
+<p *ngFor="let value of books; index as i; first as isFirst">
+  <span *ngIf="isFirst">default</span>
+  {{ i }}/{{ books.length }}. {{ value.bookID }},{{ value.bookName }},{{
+    value.category
+  }},{{ value.price }},{{ value.operation }}
+</p>
+
+<div style="text-align: left; margin-bottom: 20px;">
+  <h1>
+    {{ title }}
+  </h1>
+</div>
+<div>
+  <table *ngIf="books" id="booksTable">
+    <tr>
+      <th>ID</th>
+      <th>Book Name</th>
+      <th>Category</th>
+      <th>Price ($)</th>
+    </tr>
+    <tr *ngFor="let book of books">
+      <td>{{ book.bookID }}</td>
+      <td>{{ book.bookName }}</td>
+      <td>{{ book.category }}</td>
+      <td>{{ book.price }}</td>
+
+      <!-- Operations -->
+      <td>
+        <label
+          id="lbl{{ book.bookID }}"
+
+          style="display: none;"
+          >✖</label
+        >
+        <button
+          id="update{{ book.BookID }}"
+
+          style="background-color: #5db75f; color: #fff;"
+        >
+          Update
+        </button>
+        <button
+          id="save{{ book.BookID }}"
+
+          style="display: none;"
+        >
+          Save
+        </button>
+      </td>
+      <td>
+        <button
+          id="delete"
+
+          style="background-color:red;  color: #fff;"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
