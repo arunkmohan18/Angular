@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <div class="container">
+    <a class="navbar-brand" href="#">Navbar</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">Books</a>
@@ -10,15 +11,41 @@
       <li class="nav-item">
         <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Messages</a>
       </li>
+      <li class="nav-item" *ngIf="loggedin()">
+        <a class="nav-link btn btn-primary" (click)="loggout()">Logout</a>
+      </li>
     </ul>
     <form #loginform="ngForm" *ngIf="!loggedin()" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
       <input class="form-control mr-sm-2" type="text" name="username" placeholder="UserName" required [(ngModel)]="model.UserName">
       <input class="form-control mr-sm-2" type="password" name="password" placeholder="Password" required [(ngModel)]="model.password">
       <button [disabled]="!loginform.valid" class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
     </form>
-    <li class="navbar-nav" *ngIf="loggedin()">
-      <a class="nav-link text-light stretched-link btn btn-primary"  (click)="loggout()" >Logout</a>
+
+    <div *ngIf="loggedin()" class="dropdown" dropdown>
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+              aria-controls="dropdown-basic">
+              Welcome {{authservice.decodedtoken?.unique_name}} <span class="caret"></span>
+      </button>
+
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+          role="menu" aria-labelledby="button-basic">
+        <li role="menuitem"><a class="dropdown-item fa fa-user" href="#">Edit Profile</a></li>
+        <li role="menuitem"><a class="dropdown-item fa fa-sign-out" href="#" (click)="loggout()">Logout</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+        </li>
+      </ul>
+    </div>
+
+
+    <!-- <ul class="navbar-nav mr-auto text-light" *ngIf="loggedin()">
+    <li class="nav-item active" >
+      <a class="nav-link text-light stretched-link "  (click)="loggout()" >Logout</a>
     </li>
+   </ul> -->
+  </div>
+
 </nav>
 
 
