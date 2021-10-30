@@ -1,12 +1,20 @@
 <div class="container">
   <div *ngIf="!registermode" style="text-align: center;">
-  <h1>Find your Book</h1>
+  <h1>{{homeh1}}</h1>
   <p class="lead">
-    Lets explore to new world... All you need to do is sign up!
+    {{homeh2}}
+  </p>
+  <p class="lead">
+    Action : {{str1}}
+  </p>
+  <p class="lead">
+    Action : {{str2}}
   </p>
   <div class="text-center">
     <button class="btn btn-primary btn-lg mr-2" (click)="registerToggle()">Register</button>
     <button class="btn btn-info btn-lg">Learn More</button>
+    <button class="btn btn-lg" (click)="clickhello()">click me</button>
+    <input type="number" [(ngModel)]="cnumber"  (ngModelChange)="oddoreven()"  />
   </div>
 </div>
 
